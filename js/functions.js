@@ -32,7 +32,7 @@ let isPalindrome = (string) => {
 
 /* или */
 
-let isPalindromeByArrayMethod = (string) => {
+const isPalindromeByArrayMethod = (string) => {
   const stereotypedString = string.replaceAll(' ', '').toLowerCase();
   const mirrorString = [...stereotypedString].reverse().join('');
   return mirrorString === stereotypedString;
