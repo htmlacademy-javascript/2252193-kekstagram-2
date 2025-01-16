@@ -25,22 +25,26 @@ console.log(getStringLength('проверяемая строка', 10));
 
 /* или
 let isPalindrome = (string) => {
-  let newString = string.replaceAll(' ', '').toLowerCase();
-  let mirrorString = newString.split('').reverse().join('');
-  return mirrorString === newString;
+  let stereotypedString = string.replaceAll(' ', '').toLowerCase();
+  let mirrorString = stereotypedString.split('').reverse().join('');
+  return mirrorString === stereotypedString;
 }; */
 
 /* или */
 
-isPalindromeByArrayMethod;
+let isPalindromeByArrayMethod = (string) => {
+  const stereotypedString = string.replaceAll(' ', '').toLowerCase();
+  const mirrorString = [...stereotypedString].reverse().join('');
+  return mirrorString === stereotypedString;
+};
 
-console.log(isPalindrome('топот'));
-console.log(isPalindrome('ДовОд'));
-console.log(isPalindrome('Кекс'));
-console.log(isPalindrome('Лёша на полке клопа нашёл '));
+console.log(isPalindromeByArrayMethod('топот'));
+console.log(isPalindromeByArrayMethod('ДовОд'));
+console.log(isPalindromeByArrayMethod('Кекс'));
+console.log(isPalindromeByArrayMethod('Лёша на полке клопа нашёл '));
 
 
-//3я функция
+// 3я функция
 const extractNumbers = (newString) => {
   let result = '';
   const string = newString.toString();
@@ -50,7 +54,6 @@ const extractNumbers = (newString) => {
       result += string[i];
     }
   }
-
   return result === '' ? NaN : Number(result);
 };
 
