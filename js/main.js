@@ -16,6 +16,9 @@ const MAX_LIKES = 200;
 const MIN_COMMENTS = 0;
 const MAX_COMMENTS = 30;
 
+//число обьектов
+const OBJ_NUMBER = 25;
+
 // функция для рандомного числа из диапазона.
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -71,5 +74,5 @@ const createPhoto = () => {
 };
 
 // массив описаний фото
-const photoArray = Array.from({length: 25}, createPhoto());
+const photoArray = Array.from({length: OBJ_NUMBER}, createPhoto());
 console.log(photoArray);
