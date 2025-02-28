@@ -38,4 +38,3 @@ const createPhoto = (_, index) => ({
 // массив описаний фото
 const getPhotoArray = () => Array.from({length: OBJ_NUMBER}, createPhoto);
 console.log(getPhotoArray());
-
