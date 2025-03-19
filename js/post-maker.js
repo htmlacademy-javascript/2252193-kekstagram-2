@@ -1,5 +1,5 @@
 import {getRandomInteger} from './util.js';
-import {MAX_COMMENTS, MAX_LIKES, MESSAGES, MIN_COMMENTS, MIN_LIKES, NAMES, OBJ_NUMBER} from './data';
+import {MAX_COMMENTS, MAX_LIKES, MESSAGES, MIN_COMMENTS, MIN_LIKES, NAMES, OBJ_NUMBER} from './data.js';
 
 const makeMessage = (count) => {
   const messageSet = new Set();
@@ -30,3 +30,4 @@ const createPhoto = (_, index) => ({
 const getPhotoArray = () => Array.from({length: OBJ_NUMBER}, createPhoto);
 
 export {getPhotoArray};
+export {createPhoto};
