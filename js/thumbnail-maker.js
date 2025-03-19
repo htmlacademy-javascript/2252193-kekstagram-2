@@ -1,4 +1,4 @@
-import {getPhotoArray} from "./post-maker.js";
+import {getPhotoArray} from './post-maker.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
