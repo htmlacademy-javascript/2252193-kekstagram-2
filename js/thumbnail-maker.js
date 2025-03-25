@@ -1,7 +1,6 @@
-import {getPhotoArray} from './post-maker.js';
-
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
+const fragment = document.createDocumentFragment();
 
 const createThumbnail = (photo) => {
   const thumbnail = template.cloneNode(true);
@@ -10,17 +9,20 @@ const createThumbnail = (photo) => {
   image.src = photo.url;
   image.alt = photo.description;
 
+  thumbnail.dataset.pictureId = photo.id;
   thumbnail.querySelector('.picture__comments').textContent = photo.comments.length;
   thumbnail.querySelector('.picture__likes').textContent = photo.likes;
 
   return thumbnail;
 };
 
-const fragment = document.createDocumentFragment();
+const thumbnailList = (posts) => {
+  posts.forEach((photo) => {
+    const thumbnail = createThumbnail(photo);
+    fragment.appendChild(thumbnail);
+  });
 
-getPhotoArray().forEach((photo) => {
-  const thumbnail = createThumbnail(photo);
-  fragment.appendChild(thumbnail);
-});
+  container.appendChild(fragment);
+};
 
-container.appendChild(fragment);
+export {thumbnailList, container};
