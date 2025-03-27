@@ -1,3 +1,5 @@
+import {openBigPicture} from './photo-maker';
+
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
@@ -16,7 +18,7 @@ const createThumbnail = (photo) => {
   return thumbnail;
 };
 
-const thumbnailList = (posts) => {
+const renderThumbs = (posts) => {
   posts.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
@@ -25,4 +27,15 @@ const thumbnailList = (posts) => {
   container.appendChild(fragment);
 };
 
-export {thumbnailList, container};
+const initThumbsListener = (postsData) => {
+  container.addEventListener('click', (evt) => {
+    const currentThumbnail = evt.target.closest('.picture');
+    const currentPhoto = postsData.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
+
+    if (currentPhoto) {
+      openBigPicture(currentPhoto);
+    }
+  });
+};
+
+export {renderThumbs, initThumbsListener};

@@ -29,5 +29,4 @@ const createPhoto = (_, index) => ({
 // массив описаний фото
 const getPhotoArray = () => Array.from({length: OBJ_NUMBER}, createPhoto);
 
-export {getPhotoArray};
-export {createPhoto};
+export {getPhotoArray, createPhoto};
