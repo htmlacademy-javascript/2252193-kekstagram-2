@@ -1,3 +1,6 @@
 import {getPhotoArray} from './post-maker.js';
-console.log(getPhotoArray());
-import './thumbnail-maker.js';
+import {renderThumbs, initThumbsListener} from './thumbnail-maker.js';
+
+const postsData = getPhotoArray();
+renderThumbs(postsData);
+initThumbsListener(postsData);
