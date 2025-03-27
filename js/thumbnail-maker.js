@@ -1,4 +1,4 @@
-import {openBigPicture} from './photo-maker';
+import {openBigPicture} from './photo-maker.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
