@@ -33,6 +33,7 @@ const initThumbsListener = (postsData) => {
     const currentPhoto = postsData.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
 
     if (currentPhoto) {
+      evt.preventDefault();
       openBigPicture(currentPhoto);
     }
   });
