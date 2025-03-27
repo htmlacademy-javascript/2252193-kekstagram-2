@@ -3,4 +3,4 @@ import {renderThumbs, initThumbsListener} from './thumbnails-maker.js';
 
 const postsData = getPhotoArray();
 renderThumbs(postsData);
-initThumbsListener(postsData);
+initThumbsListener(postsData); 
