@@ -1,4 +1,4 @@
-import {openBigPicture} from './photo-maker';
+import {openBigPicture} from './render-photo.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
@@ -33,6 +33,7 @@ const initThumbsListener = (postsData) => {
     const currentPhoto = postsData.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
 
     if (currentPhoto) {
+      evt.preventDefault();
       openBigPicture(currentPhoto);
     }
   });
