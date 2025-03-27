@@ -1,5 +1,5 @@
-import {getPhotoArray} from './render-posts.js';
-import {renderThumbs, initThumbsListener} from './render-thumbs.js';
+import {getPhotoArray} from './post-maker.js';
+import {renderThumbs, initThumbsListener} from './thumbnails-maker.js';
 
 const postsData = getPhotoArray();
 renderThumbs(postsData);
