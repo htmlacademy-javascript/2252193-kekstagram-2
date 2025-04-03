@@ -10,4 +10,4 @@ const pristine = new Pristine(uploadForm, {
 
 pristine.addValidator(hashtagInput, (value) => /^#[a-zа-яё0-9]{1,19}$/i.test(value), 'Ошибка');
 
-pristine.addValidator(textInput, (value) => value.length <= 140, 'Ошибка');
+pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
