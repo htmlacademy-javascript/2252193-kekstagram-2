@@ -8,6 +8,6 @@ const pristine = new Pristine(uploadForm, {
   errorTextParent: 'img-upload__field-wrapper',
 });
 
-pristine.addValidator(hashtagInput, (value) => /^#[a-zа-яё0-9]{1,19}$/i.test(value), 'Ошибка');
+// pristine.addValidator(hashtagInput, (value) => /^#[a-zа-яё0-9]{1,19}$/i.test(value), 'Ошибка');
 
 pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
