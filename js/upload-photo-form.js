@@ -1,3 +1,5 @@
+import {isEscapeKey} from './util';
+
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
 const uploadFile = uploadForm.querySelector('#upload-file');
@@ -13,7 +15,7 @@ const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const onResetButtonClick = () => closePhotoEditor();
 
 const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     if (document.activeElement === hashtagInput || document.activeElement === textInput) {
       evt.stopPropagation();

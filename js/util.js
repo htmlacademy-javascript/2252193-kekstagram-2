@@ -7,4 +7,15 @@ const getRandomInteger = (a, b) => {
   return result === upper ? lower : result + 1; // подставляем следующий
 };
 
-export {getRandomInteger};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const numPlural = (num, nominative, genitiveSingular, genitivePlural) => {
+  if (num % 10 === 0 || num % 100 > 4 && num % 100 < 21) {
+    return genitivePlural;
+  }
+  return num % 10 === 1
+    ? nominative
+    : genitiveSingular;
+};
+
+export {getRandomInteger, isEscapeKey, numPlural};
