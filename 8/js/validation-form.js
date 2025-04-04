@@ -19,7 +19,7 @@ const isHashtagsValid = (value) => {
   errorMsg = '';
   const hashtagText = value.toLowerCase().trim();
 
-  if (!hashtagInput) {
+  if (!hashtagText) {
     return true;
   }
 
