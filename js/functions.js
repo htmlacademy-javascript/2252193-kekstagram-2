@@ -41,5 +41,3 @@ console.log(extractNumbers('а я томат'));
 console.log(extractNumbers(2023));
 console.log(extractNumbers(-1));
 console.log(extractNumbers(1.5));
-
-export {getStringLength, extractNumbers, isPalindromeByArrayMethod};

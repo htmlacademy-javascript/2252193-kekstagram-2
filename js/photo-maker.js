@@ -1,4 +1,5 @@
 import {clearComments, renderComments} from './render-comments.js';
+import {isEscapeKey} from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img').querySelector('img');
@@ -11,7 +12,7 @@ const onBigPictureCancel = () => {
 };
 
 const onEscKeydown = (evt) => {
-  if (evt.keyCode === 27) {
+  if (isEscapeKey(evt)) {
     closeBigPicture();
   }
 };

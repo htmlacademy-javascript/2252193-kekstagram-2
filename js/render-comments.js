@@ -7,15 +7,16 @@ const socialComments = bigPicture.querySelector('.social__comments');
 const socialComment = socialComments.querySelector('.social__comment');
 const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
-socialComments.innerHTML = '';
 
 const renderNextComments = () => {
   const socialCommentsFragment = document.createDocumentFragment();
   const renderedComments = comments.slice(currentCount, currentCount + COUNT_STEP);
   const renderedCommentsLength = currentCount + renderedComments.length;
+  const commentsShownCount = commentsCount.querySelector('.social__comment-shown-count');
 
   renderedComments.forEach((comment) => {
     const socialCurrentComment = socialComment.cloneNode(true);
+    socialComments.innerHTML = '';
 
     socialCurrentComment.querySelector('.social__picture').src = comment.avatar;
     socialCurrentComment.querySelector('.social__picture').alt = comment.name;
@@ -25,7 +26,7 @@ const renderNextComments = () => {
   });
 
   socialComments.appendChild(socialCommentsFragment);
-  commentsCount.firstChild.textContent = `${renderedCommentsLength} `;
+  commentsShownCount.textContent = `${renderedCommentsLength} `;
   commentsCount.querySelector('.social__comment-total-count').textContent = comments.length;
 
   if (renderedCommentsLength >= comments.length) {
