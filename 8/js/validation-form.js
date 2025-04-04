@@ -1,15 +1,14 @@
 import {numPlural} from './util.js';
 import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
-import {initThumbsListener} from './thumbnail-maker';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
 const pristine = new Pristine(uploadForm, {
-  classTo: 'img-upload__field-wrapper',
-  errorClass: 'img-upload__field-wrapper--error',
+  classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error',
 });
 
 let errorMsg = '';
@@ -20,7 +19,7 @@ const isHashtagsValid = (value) => {
   errorMsg = '';
   const hashtagText = value.toLowerCase().trim();
 
-  if (hashtagInput.length === 0) {
+  if (!hashtagInput) {
     return true;
   }
 
@@ -68,6 +67,23 @@ const isHashtagsValid = (value) => {
   });
 };
 
-pristine.addValidator(hashtagInput, isHashtagsValid, error);
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  if (pristine.validate()) {
+    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
+    uploadForm.submit();
+  }
+};
+
+const onInputHashtag = () => {
+  isHashtagsValid(hashtagInput.value);
+};
+
+pristine.addValidator(hashtagInput, isHashtagsValid, error, 2, false);
 
 pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
+
+uploadForm.addEventListener('submit', onFormSubmit);
+
+hashtagInput.addEventListener('input', onInputHashtag);
