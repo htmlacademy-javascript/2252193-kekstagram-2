@@ -80,7 +80,7 @@ const onInputHashtag = () => {
   isHashtagsValid(hashtagInput.value);
 };
 
-pristine.addValidator(hashtagInput, isHashtagsValid, error, 2, false);
+pristine.addValidator(hashtagInput, isHashtagsValid, error);
 
 pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
 

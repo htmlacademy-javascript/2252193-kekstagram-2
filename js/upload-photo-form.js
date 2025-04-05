@@ -1,4 +1,5 @@
-import {isEscapeKey} from './util';
+import {isEscapeKey} from './util.js';
+import {resetScale} from './scale-buttons.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -31,7 +32,9 @@ const closePhotoEditor = () => {
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   uploadResetButton.removeEventListener('click', onResetButtonClick);
+  resetScale();
   uploadFile.value = '';
+  uploadForm.reset();
 };
 
 const initUploadModal = () => {
