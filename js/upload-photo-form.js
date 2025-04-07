@@ -9,10 +9,6 @@ const uploadResetButton = uploadForm.querySelector('#upload-cancel');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
-// uploadForm.method = 'POST';
-// uploadForm.action = 'https://31.javascript.htmlacademy.pro/kekstagram';
-// uploadForm.enctype = 'multipart/form-data';
-
 const onResetButtonClick = () => closePhotoEditor();
 
 const onDocumentKeydown = (evt) => {
