@@ -6,13 +6,13 @@ const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
+let errorMsg = '';
+
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
-
-let errorMsg = '';
 
 const error = () => errorMsg;
 
