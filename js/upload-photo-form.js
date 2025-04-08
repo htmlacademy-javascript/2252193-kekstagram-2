@@ -1,11 +1,14 @@
 import {isEscapeKey} from './util.js';
 import {resetScale} from './scale-buttons.js';
+import {onChangeImageEffect} from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
 const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadModal = uploadForm.querySelector('.img-upload__overlay');
 const uploadResetButton = uploadForm.querySelector('#upload-cancel');
+const imgEffectsFieldset = document.querySelector('.img-upload__effects');
+const effectLevelSlider = uploadForm.querySelector('.effect-level__slider');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 
@@ -29,6 +32,8 @@ const closePhotoEditor = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
   uploadResetButton.removeEventListener('click', onResetButtonClick);
   resetScale();
+  imgEffectsFieldset.removeEventListener('change', onChangeImageEffect);
+  effectLevelSlider.noUiSlider.destroy();
   uploadFile.value = '';
   uploadForm.reset();
 };

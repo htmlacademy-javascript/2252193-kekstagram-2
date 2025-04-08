@@ -1,60 +1,55 @@
-const sliderOptionsChromeSepia = {
-  range: {
-    min: 0,
-    max: 1,
+const EFFECT_CONFIG = {
+  chrome: {
+    options: {
+      range: { min: 0, max: 1, },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'grayscale',
+    unit: '',
   },
-  start: 1,
-  step: 0.1,
-};
 
-const sliderOptionsMarvinDefault = {
-  range: {
-    min: 0,
-    max: 100,
+  sepia: {
+    options: {
+      range: { min: 0, max: 1, },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'sepia',
+    unit: '',
   },
-  start: 100,
-  step: 1,
-};
 
-const sliderOptionsPhobos = {
-  range: {
-    min: 0,
-    max: 3,
+  marvin: {
+    options: {
+      range: { min: 0, max: 100, },
+      start: 100,
+      step: 1,
+    },
+    style: 'invert',
+    unit: '%',
   },
-  start: 3,
-  step: 0.1,
-};
 
-const sliderOptionsHeat = {
-  range: {
-    min: 1,
-    max: 3,
+  phobos: {
+    options: {
+      range: { min: 0, max: 3, },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'blur',
+    unit: 'px',
   },
-  start: 3,
-  step: 0.1,
+
+  heat: {
+    options: {
+      range: { min: 1, max: 3, },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'brightness',
+    unit: '',
+  },
 };
 
-const effects = {
-  none: sliderOptionsMarvinDefault,
-  chrome: sliderOptionsChromeSepia,
-  sepia: sliderOptionsChromeSepia,
-  marvin: sliderOptionsChromeSepia,
-  phobos: sliderOptionsPhobos,
-  heat: sliderOptionsHeat,
-};
+const NO_EFFECT = 'none';
 
-const getChromeStyleFilter = (value) => `grayscale(${value})`;
-const getSepiaStyleFilter = (value) => `sepia(${value})`;
-const getMarvinStyleFilter = (value) => `invert(${value}%)`;
-const getPhobosStyleFilter = (value) => `blur(${value}px)`;
-const getHeatStyleFilter = (value) => `brightness(${value})`;
-
-const styleFiltersByEffects = {
-  chrome: getChromeStyleFilter,
-  sepia: getSepiaStyleFilter,
-  marvin: getMarvinStyleFilter,
-  phobos: getPhobosStyleFilter,
-  heat: getHeatStyleFilter,
-};
-
-export {effects, styleFiltersByEffects};
+export { EFFECT_CONFIG, NO_EFFECT };
