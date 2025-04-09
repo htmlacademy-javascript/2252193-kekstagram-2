@@ -1,5 +1,5 @@
 import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
-import {errorText} from "./const-errors.js";
+import {errorText} from './const-errors.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
