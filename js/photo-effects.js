@@ -1,6 +1,6 @@
 import {NO_EFFECT,EFFECT_CONFIG} from './const-effects.js';
 
-const imageUploadForm = document.querySelector('#upload-select-image');
+const uploadForm = document.querySelector('#upload-select-image');
 const imgUploadSection = document.querySelector('.img-upload__overlay');
 const imgEffectsFieldset = document.querySelector('.img-upload__effects');
 const effectSliderContainer = document.querySelector('.img-upload__effect-level');
@@ -9,9 +9,9 @@ const effectInputValue = imgUploadSection.querySelector('.effect-level__value');
 const imgUploadPreview = imgUploadSection.querySelector('.img-upload__preview img');
 
 const uiSlider = noUiSlider.create(effectLevelSlider, {
-  range: {min: 0, max: 1,},
-  start: 1,
-  step: 0.1,
+  range: {min: 0, max: 100,},
+  start: 100,
+  step: 1,
   connect: 'lower',
   format: {
     to: function (value) {
@@ -51,7 +51,7 @@ const onChangeImageEffect = (evt) => {
 
 const onEffectValueChange = (handlersValue) => {
   const value = handlersValue[0];
-  const effectName = imageUploadForm.effect.value;
+  const effectName = uploadForm.effect.value;
   if (effectName === NO_EFFECT) {
     return;
   }
@@ -61,8 +61,9 @@ const onEffectValueChange = (handlersValue) => {
   effectInputValue.value = value;
 };
 
-uiSlider.on('update', onEffectValueChange);
+const effectsListener = () =>{
+  uiSlider.on('update', onEffectValueChange);
+  imgEffectsFieldset.addEventListener('change', onChangeImageEffect);
+};
 
-imgEffectsFieldset.addEventListener('change', onChangeImageEffect);
-
-export {onChangeImageEffect};
+export {onChangeImageEffect, effectsListener};

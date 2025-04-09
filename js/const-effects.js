@@ -52,4 +52,4 @@ const EFFECT_CONFIG = {
 
 const NO_EFFECT = 'none';
 
-export { EFFECT_CONFIG, NO_EFFECT };
+export {EFFECT_CONFIG, NO_EFFECT};

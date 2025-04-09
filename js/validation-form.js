@@ -1,4 +1,3 @@
-import {numPlural} from './util.js';
 import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
 import {errorText} from "./const-errors.js";
 
