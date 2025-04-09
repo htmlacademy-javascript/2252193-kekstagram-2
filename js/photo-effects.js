@@ -8,17 +8,6 @@ const effectLevelSlider = imgUploadSection.querySelector('.effect-level__slider'
 const effectInputValue = imgUploadSection.querySelector('.effect-level__value');
 const imgUploadPreview = imgUploadSection.querySelector('.img-upload__preview img');
 
-const updateSliderConfig = (effectName) => {
-  effectLevelSlider.noUiSlider.updateOptions(effectName.options);
-};
-
-const imageEffectReset = () => {
-  imgUploadPreview.style.filter = NO_EFFECT;
-  imgUploadPreview.className = '';
-  effectInputValue.value = '';
-  effectSliderContainer.classList.add('hidden');
-};
-
 const uiSlider = noUiSlider.create(effectLevelSlider, {
   range: {min: 0, max: 1,},
   start: 1,
@@ -37,6 +26,16 @@ const uiSlider = noUiSlider.create(effectLevelSlider, {
   },
 });
 
+const updateSliderConfig = (effectName) => {
+  effectLevelSlider.noUiSlider.updateOptions(effectName.options);
+};
+
+const imageEffectReset = () => {
+  imgUploadPreview.style.filter = NO_EFFECT;
+  imgUploadPreview.className = '';
+  effectInputValue.value = '';
+  effectSliderContainer.classList.add('hidden');
+};
 
 const onChangeImageEffect = (evt) => {
   const effectName = evt.target.value;
