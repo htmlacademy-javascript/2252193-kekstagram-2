@@ -1,9 +1,13 @@
 import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
 import {errorText} from './const-errors.js';
+import {openUploadMessagePopup} from './message-upload-popup.js';
+import {sendDataToServer} from './server-api.js';
+import {closePhotoEditor} from './upload-photo-form.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
+const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
 
 let errorMsg = '';
 
@@ -12,6 +16,16 @@ const pristine = new Pristine(uploadForm, {
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
+
+const blockSubmitButton = () => {
+  uploadSubmitButton.disabled = true;
+  uploadSubmitButton.textContent = 'Публикация...';
+};
+
+const unBlockSubmitButton = () => {
+  uploadSubmitButton.disabled = false;
+  uploadSubmitButton.textContent = 'Опубликовать';
+};
 
 const error = () => errorMsg;
 
@@ -72,6 +86,23 @@ const onFormSubmit = (evt) => {
     hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
     uploadForm.submit();
   }
+
+  const formData = new FormData(evt.target);
+  blockSubmitButton();
+
+  const onSuccess = () => {
+    closePhotoEditor();
+    unBlockSubmitButton();
+    openUploadMessagePopup('success');
+  };
+
+  const onError = () => {
+    closePhotoEditor();
+    unBlockSubmitButton();
+    openUploadMessagePopup('error');
+  };
+
+  sendDataToServer(formData, onSuccess, onError);
 };
 
 const onInputHashtag = () => {

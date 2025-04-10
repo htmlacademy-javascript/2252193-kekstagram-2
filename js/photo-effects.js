@@ -46,6 +46,7 @@ const onEffectValueChange = (handlersValue) => {
   const value = handlersValue[0];
   const effectName = uploadForm.effect.value;
   if (effectName === NO_EFFECT) {
+    effectSliderContainer.classList.add('hidden');
     return;
   }
   const filterName = EFFECT_CONFIG[effectName].style;

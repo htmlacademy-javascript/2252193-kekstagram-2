@@ -47,4 +47,4 @@ const initUploadModal = () => {
   });
 };
 
-export {initUploadModal};
+export {initUploadModal, closePhotoEditor};
