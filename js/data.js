@@ -24,7 +24,7 @@ const MAX_SYMBOLS = 20;
 
 const SCALE_STEP = 0.25;
 
-const SERVER_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
+const API_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
-export {NAMES, MESSAGES, MIN_LIKES, MAX_LIKES, MIN_COMMENTS, MAX_COMMENTS, OBJ_NUMBER, MAX_HASHTAGS, MAX_SYMBOLS, SCALE_STEP, SERVER_URL};
+export {NAMES, MESSAGES, MIN_LIKES, MAX_LIKES, MIN_COMMENTS, MAX_COMMENTS, OBJ_NUMBER, MAX_HASHTAGS, MAX_SYMBOLS, SCALE_STEP, API_URL};
 

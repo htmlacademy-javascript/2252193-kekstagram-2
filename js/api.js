@@ -1,24 +1,25 @@
-import {SERVER_URL} from './data.js';
+import {API_URL} from './data.js';
 
-const route = {
+const Route = {
   GET_DATA: '/data',
   SEND_DATA:'/',
-}
+};
 
-const method = {
+const Method = {
   GET: 'GET',
   POST: 'POST',
-}
+};
 
 const errorText = {
-  [method.GET]: 'Не удалось загрузить данные. Попробуйте еще раз.',
-  [method.POST]: 'Не удалось отправить данные формы.',
-}
+  [Method.GET]: 'Не удалось загрузить данные. Попробуйте еще раз.',
+  [Method.POST]: 'Не удалось отправить данные формы.',
+};
 
-const load = (route, method = method.GET, body = null) =>
-  fetch(`${SERVER_URL}${route}`,{method, body})
+const load = (route, method = Method.GET, body = null) =>
+  fetch(`${API_URL}${route}`,{method, body})
     .then((response) => response.ok ? response.json() : Promise.reject(errorText[method]));
 
-const getData = () => load(route.GET_DATA);
-const sendData = (body) => load(route.SEND_DATA, method.POST, body);
+const getData = () => load(Route.GET_DATA);
+const sendData = (body) => load(Route.SEND_DATA, Method.POST, body);
 
+export {getData, sendData};
