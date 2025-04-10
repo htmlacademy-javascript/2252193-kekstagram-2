@@ -26,7 +26,7 @@ const renderNextComments = () => {
   });
 
   socialComments.appendChild(socialCommentsFragment);
-  commentsShownCount.textContent = `${renderedCommentsLength} `;
+  commentsShownCount.textContent = `${renderedCommentsLength}`;
   commentsCount.querySelector('.social__comment-total-count').textContent = comments.length;
 
   if (renderedCommentsLength >= comments.length) {

@@ -1,17 +1,17 @@
-import {numPlural} from './util.js';
 import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
+import {errorText} from './const-errors.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
+
+let errorMsg = '';
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__form',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error',
 });
-
-let errorMsg = '';
 
 const error = () => errorMsg;
 
@@ -28,33 +28,31 @@ const isHashtagsValid = (value) => {
   const rules = [
     {
       check: hashtagArray.some((item) => item[0] !== '#'),
-      error: 'Хэштег начинается с символа # (решётка)',
+      error: errorText.startsWithHash,
     },
     {
       check: hashtagArray.some((item) => item === '#'),
-      error: 'Хэштег не может состоять только из одной решетки',
+      error: errorText.notOnlyHash,
     },
     {
       check: hashtagArray.some((item) => item.length > MAX_SYMBOLS),
-      error: `Максимальная длина одного хэштега ${MAX_SYMBOLS} символов, включая решётку`,
+      error: errorText.maxLengthSymbols,
     },
     {
       check: hashtagArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
-      error: 'Хэштег содержит недопустимые символы',
+      error: errorText.invalidSymbols,
     },
     {
       check: hashtagArray.some((item) => item.slice(1).includes('#')),
-      error: 'Хэштеги разделяются пробелами',
+      error: errorText.notSeparated,
     },
     {
       check: hashtagArray.some((item, num, array) => array.includes(item, num + 1)),
-      error: 'Хэштеги не должны повторяться',
+      error: errorText.notRepeated,
     },
     {
       check: hashtagArray.length > MAX_HASHTAGS,
-      error: `Нельзя указать больше ${MAX_HASHTAGS} ${numPlural(
-        MAX_HASHTAGS, 'хештега', 'хештегов', 'хештегов'
-      )}`,
+      error: errorText.maxLengthHashtags,
     },
   ];
 
@@ -80,10 +78,11 @@ const onInputHashtag = () => {
   isHashtagsValid(hashtagInput.value);
 };
 
-pristine.addValidator(hashtagInput, isHashtagsValid, error, 2, false);
+const formValidate = () => {
+  pristine.addValidator(hashtagInput, isHashtagsValid, error);
+  pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
+  uploadForm.addEventListener('submit', onFormSubmit);
+  hashtagInput.addEventListener('input', onInputHashtag);
+};
 
-pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
-
-uploadForm.addEventListener('submit', onFormSubmit);
-
-hashtagInput.addEventListener('input', onInputHashtag);
+export {formValidate};
