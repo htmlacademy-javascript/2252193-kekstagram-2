@@ -26,7 +26,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const closePhotoEditor = () => {
+function closePhotoEditor(){
   uploadModal.classList.add('hidden');
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -36,7 +36,7 @@ const closePhotoEditor = () => {
   effectLevelSlider.noUiSlider.destroy();
   uploadFile.value = '';
   uploadForm.reset();
-};
+}
 
 const initUploadModal = () => {
   uploadFile.addEventListener('change', () => {
@@ -47,4 +47,4 @@ const initUploadModal = () => {
   });
 };
 
-export {initUploadModal};
+export {initUploadModal, closePhotoEditor};

@@ -18,8 +18,8 @@ const createThumbnail = (photo) => {
   return thumbnail;
 };
 
-const renderThumbs = (posts) => {
-  posts.forEach((photo) => {
+const renderThumbs = (photos) => {
+  photos.forEach((photo) => {
     const thumbnail = createThumbnail(photo);
     fragment.appendChild(thumbnail);
   });
@@ -27,10 +27,10 @@ const renderThumbs = (posts) => {
   container.appendChild(fragment);
 };
 
-const initThumbsListener = (postsData) => {
+const initThumbsListener = (photos) => {
   container.addEventListener('click', (evt) => {
     const currentThumbnail = evt.target.closest('.picture');
-    const currentPhoto = postsData.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
+    const currentPhoto = photos.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
 
     if (currentPhoto) {
       evt.preventDefault();
