@@ -17,6 +17,10 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
+const submitButton = (evt) => {
+    evt.preventDefault();
+}
+
 const blockSubmitButton = () => {
   uploadSubmitButton.disabled = true;
   uploadSubmitButton.textContent = 'Публикация...';
@@ -31,13 +35,11 @@ const error = () => errorMsg;
 
 const isHashtagsValid = (value) => {
   errorMsg = '';
-  const hashtagText = value.toLowerCase().trim();
+  const hashtagArray = value.toLowerCase().trim().split(/\s+/);
 
-  if (!hashtagText) {
+  if (!hashtagArray) {
     return true;
   }
-
-  const hashtagArray = hashtagText.split(/\s+/);
 
   const rules = [
     {
@@ -80,12 +82,8 @@ const isHashtagsValid = (value) => {
 };
 
 const onFormSubmit = (evt) => {
-  evt.preventDefault();
 
-  if (pristine.validate()) {
-    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
-    uploadForm.submit();
-  }
+  uploadSubmitButton.addEventListener('submit', submitButton);
 
   const formData = new FormData(evt.target);
   blockSubmitButton();
