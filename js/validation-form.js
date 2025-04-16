@@ -1,8 +1,8 @@
-import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
-import {errorText} from './const-errors.js';
-import {openUploadMessagePopup} from './message-upload-popup.js';
-import {sendDataToServer} from './server-api.js';
-import {closePhotoEditor} from './upload-photo-form.js';
+import { MAX_SYMBOLS, MAX_HASHTAGS } from './data.js';
+import { errorText, submitBtnText } from './const-errors.js';
+import { openUploadMessagePopup } from './message-upload-popup.js';
+import { sendDataToServer } from './server-api.js';
+import { closePhotoEditor } from './upload-photo-form.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
@@ -17,18 +17,14 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
-const submitButton = (evt) => {
-    evt.preventDefault();
-}
-
 const blockSubmitButton = () => {
   uploadSubmitButton.disabled = true;
-  uploadSubmitButton.textContent = 'Публикация...';
+  uploadSubmitButton.textContent = submitBtnText.success;
 };
 
 const unBlockSubmitButton = () => {
   uploadSubmitButton.disabled = false;
-  uploadSubmitButton.textContent = 'Опубликовать';
+  uploadSubmitButton.textContent = submitBtnText.default;
 };
 
 const error = () => errorMsg;
@@ -82,8 +78,7 @@ const isHashtagsValid = (value) => {
 };
 
 const onFormSubmit = (evt) => {
-
-  uploadSubmitButton.addEventListener('submit', submitButton);
+  evt.preventDefault();
 
   const formData = new FormData(evt.target);
   blockSubmitButton();
@@ -114,4 +109,4 @@ const formValidate = () => {
   hashtagInput.addEventListener('input', onInputHashtag);
 };
 
-export {formValidate};
+export { formValidate };

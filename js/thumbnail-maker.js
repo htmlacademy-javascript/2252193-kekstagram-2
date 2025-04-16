@@ -1,4 +1,4 @@
-import {openBigPicture} from './photo-maker.js';
+import { openBigPicture } from './photo-maker.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
@@ -39,4 +39,4 @@ const initThumbsListener = (photos) => {
   });
 };
 
-export {renderThumbs, initThumbsListener};
+export { renderThumbs, initThumbsListener };

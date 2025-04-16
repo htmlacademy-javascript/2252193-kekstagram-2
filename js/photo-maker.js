@@ -1,5 +1,5 @@
-import {clearComments, renderComments} from './render-comments.js';
-import {isEscapeKey} from './util.js';
+import { clearComments, renderComments } from './render-comments.js';
+import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img').querySelector('img');
@@ -38,4 +38,4 @@ const openBigPicture = (currentPhoto) => {
   document.addEventListener('keydown', onEscKeydown);
 };
 
-export {openBigPicture};
+export { openBigPicture };

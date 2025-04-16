@@ -49,4 +49,4 @@ const renderComments = (currentPhotoComments) => {
   commentsLoader.addEventListener('click', renderNextComments);
 };
 
-export {clearComments, renderComments};
+export { clearComments, renderComments };

@@ -20,4 +20,4 @@ const numPlural = (num, nominative, genitiveSingular, genitivePlural) => {
 
 const getTemplateElement = (parent, templateId, elementClass) => parent.querySelector(`#${templateId}`).content.querySelector(`.${elementClass}`);
 
-export {getRandomInteger, isEscapeKey, numPlural, getTemplateElement};
+export { getRandomInteger, isEscapeKey, numPlural, getTemplateElement };

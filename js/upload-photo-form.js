@@ -1,6 +1,6 @@
-import {isEscapeKey} from './util.js';
-import {resetScale} from './scale-buttons.js';
-import {onChangeImageEffect} from './photo-effects.js';
+import { isEscapeKey } from './util.js';
+import { resetScale } from './scale-buttons.js';
+import { onChangeImageEffect } from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -47,4 +47,4 @@ const initUploadModal = () => {
   });
 };
 
-export {initUploadModal, closePhotoEditor};
+export { initUploadModal, closePhotoEditor };
