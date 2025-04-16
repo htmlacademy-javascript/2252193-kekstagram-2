@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { resetScale } from './scale-buttons.js';
-import { imageEffectReset, onChangeImageEffect } from './photo-effects.js';
+import { onChangeImageEffect } from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
