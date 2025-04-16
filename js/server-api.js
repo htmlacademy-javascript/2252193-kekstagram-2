@@ -27,7 +27,6 @@ const getDataFromServer = async (onSuccess) => {
     onSuccess(posts);
   } catch (error) {
     showAlertMessage('Не удалось загрузить данные с сервера');
-    console.error(error);
   }
 };
 
