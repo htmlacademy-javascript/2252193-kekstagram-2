@@ -28,9 +28,18 @@ const renderThumbs = (photos) => {
 };
 
 const initThumbsListener = (photos) => {
+  if (!container) {
+    return;
+  }
+
   container.addEventListener('click', (evt) => {
     const currentThumbnail = evt.target.closest('.picture');
-    const currentPhoto = photos.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
+    if (!currentThumbnail) {
+      return;
+    }
+
+    const id = +currentThumbnail.dataset.pictureId;
+    const currentPhoto = photos.find((photo) => photo.id === id);
 
     if (currentPhoto) {
       evt.preventDefault();
@@ -38,5 +47,4 @@ const initThumbsListener = (photos) => {
     }
   });
 };
-
 export { renderThumbs, initThumbsListener };

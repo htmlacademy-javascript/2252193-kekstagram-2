@@ -98,15 +98,15 @@ const onFormSubmit = (evt) => {
   sendDataToServer(formData, onSuccess, onError);
 };
 
-const onInputHashtag = () => {
-  isHashtagsValid(hashtagInput.value);
-};
+// const onInputHashtag = () => {
+//   isHashtagsValid(hashtagInput.value);
+// };
 
 const formValidate = () => {
   pristine.addValidator(hashtagInput, isHashtagsValid, error);
   pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
   uploadForm.addEventListener('submit', onFormSubmit);
-  hashtagInput.addEventListener('input', onInputHashtag);
+  // hashtagInput.addEventListener('input', onInputHashtag);
 };
 
 export { formValidate };
