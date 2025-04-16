@@ -4,7 +4,7 @@ import { closePhotoEditor } from './upload-photo-form.js';
 const FILE_TYPES = ['jpg','jpeg','png','gif'];
 
 const uploadForm = document.querySelector('.img-upload__form');
-const fileUpload = uploadForm.querySelector('input[type=file]');
+const fileUpload = uploadForm.querySelector('#upload-file');
 const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
 const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
 
