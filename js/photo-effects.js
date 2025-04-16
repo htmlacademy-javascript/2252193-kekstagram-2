@@ -60,4 +60,4 @@ const effectsListener = () =>{
   imgEffectsFieldset.addEventListener('change', onChangeImageEffect);
 };
 
-export { onChangeImageEffect, effectsListener };
+export { onChangeImageEffect, effectsListener, imageEffectReset };

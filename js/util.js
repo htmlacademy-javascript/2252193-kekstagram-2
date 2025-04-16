@@ -20,4 +20,25 @@ const numPlural = (num, nominative, genitiveSingular, genitivePlural) => {
 
 const getTemplateElement = (parent, templateId, elementClass) => parent.querySelector(`#${templateId}`).content.querySelector(`.${elementClass}`);
 
-export { getRandomInteger, isEscapeKey, numPlural, getTemplateElement };
+const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
+
+const randomIntegersBetweenRange = (from, to, resultsLimit) => {
+  const range = Math.abs(from - to);
+  if (!range) {
+    return [];
+  }
+  const resultsCount = Math.min(range, resultsLimit);
+  const minValue = Math.min(from, to);
+  const values = Array.from({ length: range }, (_, index) => minValue + index);
+  return shuffleArray(values).splice(0, resultsCount);
+};
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomInteger, isEscapeKey, numPlural, getTemplateElement, randomIntegersBetweenRange, debounce };
