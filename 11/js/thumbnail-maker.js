@@ -47,4 +47,5 @@ const initThumbsListener = (photos) => {
     }
   });
 };
+
 export { renderThumbs, initThumbsListener };
