@@ -34,7 +34,7 @@ function closePhotoEditor(){
   uploadResetButton.removeEventListener('click', onResetButtonClick);
   imgEffectsFieldset.removeEventListener('change', onChangeImageEffect);
   effectLevelSlider.noUiSlider.destroy();
-  imageEffectReset(); // добилась сброса контейнера и эффектов картинки, но при повторном открытие они перестали появляться
+  // imageEffectReset(); // добилась сброса контейнера и эффектов картинки, но при повторном открытие они перестали появляться
   uploadFile.value = '';
   uploadForm.reset();
 }
@@ -43,6 +43,7 @@ const initUploadModal = () => {
   uploadFile.addEventListener('change', () => {
     uploadModal.classList.remove('hidden');
     pageBody.classList.add('modal-open');
+
     uploadResetButton.addEventListener('click', onResetButtonClick);
     document.addEventListener('keydown', onDocumentKeydown);
   });
