@@ -5,6 +5,7 @@ import './scale-buttons.js';
 import { effectsListener } from './photo-effects.js';
 import { getDataFromServer } from './server-api.js';
 import { disableFilterPosts, initPostsFilter } from './posts-filter.js';
+import './upload-user-photo.js';
 
 getDataFromServer((posts) => {
   renderThumbs(posts);
