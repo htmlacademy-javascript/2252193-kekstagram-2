@@ -1,4 +1,4 @@
-import { renderThumbs } from './thumbnail-maker.js';
+import {initThumbsListener, renderThumbs} from './thumbnail-maker.js';
 import { initUploadModal } from './upload-photo-form.js';
 import { formValidate } from './validation-form.js';
 import './scale-buttons.js';
@@ -8,6 +8,7 @@ import { disableFilterPosts, initPostsFilter } from './posts-filter.js';
 
 getDataFromServer((posts) => {
   renderThumbs(posts);
+  initThumbsListener(posts);
   initPostsFilter(posts);
 });
 
