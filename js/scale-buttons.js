@@ -1,4 +1,4 @@
-import {SCALE_STEP} from './data.js';
+import { SCALE_STEP } from './data.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const smallerButton = uploadForm.querySelector('.scale__control--smaller');
@@ -33,4 +33,4 @@ smallerButton.addEventListener('click', onSmallerButtonClick);
 
 biggerButton.addEventListener('click', onBiggerButtonClick);
 
-export {resetScale};
+export { resetScale };

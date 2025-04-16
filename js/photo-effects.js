@@ -1,4 +1,4 @@
-import {NO_EFFECT,EFFECT_CONFIG} from './const-effects.js';
+import { NO_EFFECT, EFFECT_CONFIG } from './const-effects.js';
 
 const uploadForm = document.querySelector('#upload-select-image');
 const imgUploadSection = document.querySelector('.img-upload__overlay');
@@ -60,4 +60,4 @@ const effectsListener = () =>{
   imgEffectsFieldset.addEventListener('change', onChangeImageEffect);
 };
 
-export {onChangeImageEffect, effectsListener};
+export { onChangeImageEffect, effectsListener, imageEffectReset };

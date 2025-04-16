@@ -1,5 +1,5 @@
-import {MAX_HASHTAGS, MAX_SYMBOLS} from './data.js';
-import {numPlural} from './util.js';
+import { MAX_HASHTAGS, MAX_SYMBOLS } from './data.js';
+import { numPlural } from './util.js';
 
 const errorText = {
   startsWithHash: 'Хэштег начинается с символа # (решётка)',
@@ -13,4 +13,9 @@ const errorText = {
   )}`,
 };
 
-export {errorText};
+const submitBtnText = {
+  success: 'Публикация...',
+  default: 'Опубликовать',
+};
+
+export { errorText, submitBtnText };

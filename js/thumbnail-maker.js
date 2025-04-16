@@ -1,4 +1,4 @@
-import {openBigPicture} from './photo-maker.js';
+import { openBigPicture } from './photo-maker.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const container = document.querySelector('.pictures');
@@ -28,9 +28,18 @@ const renderThumbs = (photos) => {
 };
 
 const initThumbsListener = (photos) => {
+  if (!container) {
+    return;
+  }
+
   container.addEventListener('click', (evt) => {
     const currentThumbnail = evt.target.closest('.picture');
-    const currentPhoto = photos.find((photo) => photo.id === +currentThumbnail.dataset.pictureId);
+    if (!currentThumbnail) {
+      return;
+    }
+
+    const id = +currentThumbnail.dataset.pictureId;
+    const currentPhoto = photos.find((photo) => photo.id === id);
 
     if (currentPhoto) {
       evt.preventDefault();
@@ -39,4 +48,4 @@ const initThumbsListener = (photos) => {
   });
 };
 
-export {renderThumbs, initThumbsListener};
+export { renderThumbs, initThumbsListener };

@@ -1,6 +1,6 @@
-import {isEscapeKey} from './util.js';
-import {resetScale} from './scale-buttons.js';
-import {onChangeImageEffect} from './photo-effects.js';
+import { isEscapeKey } from './util.js';
+import { resetScale } from './scale-buttons.js';
+import { onChangeImageEffect } from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -29,11 +29,12 @@ const onDocumentKeydown = (evt) => {
 function closePhotoEditor(){
   uploadModal.classList.add('hidden');
   pageBody.classList.remove('modal-open');
+  resetScale();
   document.removeEventListener('keydown', onDocumentKeydown);
   uploadResetButton.removeEventListener('click', onResetButtonClick);
-  resetScale();
   imgEffectsFieldset.removeEventListener('change', onChangeImageEffect);
   effectLevelSlider.noUiSlider.destroy();
+  // imageEffectReset(); // добилась сброса контейнера и эффектов картинки, но при повторном открытие они перестали появляться
   uploadFile.value = '';
   uploadForm.reset();
 }
@@ -42,9 +43,10 @@ const initUploadModal = () => {
   uploadFile.addEventListener('change', () => {
     uploadModal.classList.remove('hidden');
     pageBody.classList.add('modal-open');
+
     uploadResetButton.addEventListener('click', onResetButtonClick);
     document.addEventListener('keydown', onDocumentKeydown);
   });
 };
 
-export {initUploadModal, closePhotoEditor};
+export { initUploadModal, closePhotoEditor };

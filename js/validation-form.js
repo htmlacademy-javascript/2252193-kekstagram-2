@@ -1,8 +1,8 @@
-import {MAX_SYMBOLS, MAX_HASHTAGS} from './data.js';
-import {errorText} from './const-errors.js';
-import {openUploadMessagePopup} from './message-upload-popup.js';
-import {sendDataToServer} from './server-api.js';
-import {closePhotoEditor} from './upload-photo-form.js';
+import { MAX_SYMBOLS, MAX_HASHTAGS } from './data.js';
+import { errorText, submitBtnText } from './const-errors.js';
+import { openUploadMessagePopup } from './message-upload-popup.js';
+import { sendDataToServer } from './server-api.js';
+import { closePhotoEditor } from './upload-photo-form.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
@@ -19,25 +19,23 @@ const pristine = new Pristine(uploadForm, {
 
 const blockSubmitButton = () => {
   uploadSubmitButton.disabled = true;
-  uploadSubmitButton.textContent = 'Публикация...';
+  uploadSubmitButton.textContent = submitBtnText.success;
 };
 
 const unBlockSubmitButton = () => {
   uploadSubmitButton.disabled = false;
-  uploadSubmitButton.textContent = 'Опубликовать';
+  uploadSubmitButton.textContent = submitBtnText.default;
 };
 
 const error = () => errorMsg;
 
 const isHashtagsValid = (value) => {
   errorMsg = '';
-  const hashtagText = value.toLowerCase().trim();
+  const hashtagArray = value.toLowerCase().trim().split(/\s+/);
 
-  if (!hashtagText) {
+  if (!hashtagArray) {
     return true;
   }
-
-  const hashtagArray = hashtagText.split(/\s+/);
 
   const rules = [
     {
@@ -82,11 +80,6 @@ const isHashtagsValid = (value) => {
 const onFormSubmit = (evt) => {
   evt.preventDefault();
 
-  if (pristine.validate()) {
-    hashtagInput.value = hashtagInput.value.trim().replaceAll(/\s+/g, '');
-    uploadForm.submit();
-  }
-
   const formData = new FormData(evt.target);
   blockSubmitButton();
 
@@ -105,15 +98,15 @@ const onFormSubmit = (evt) => {
   sendDataToServer(formData, onSuccess, onError);
 };
 
-const onInputHashtag = () => {
-  isHashtagsValid(hashtagInput.value);
-};
+// const onInputHashtag = () => {
+//   isHashtagsValid(hashtagInput.value);
+// };
 
 const formValidate = () => {
   pristine.addValidator(hashtagInput, isHashtagsValid, error);
   pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
   uploadForm.addEventListener('submit', onFormSubmit);
-  hashtagInput.addEventListener('input', onInputHashtag);
+  // hashtagInput.addEventListener('input', onInputHashtag);
 };
 
-export {formValidate};
+export { formValidate };
