@@ -1,6 +1,8 @@
 // функция для рандомного числа из диапазона.
 import { ALERT_SHOW_TIME } from './data.js';
 
+const templateError = document.querySelector('#data-error').content.querySelector('.data-error');
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
