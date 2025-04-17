@@ -9,9 +9,10 @@ const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 
 const renderNextComments = () => {
+  const startCount = 0;
   const socialCommentsFragment = document.createDocumentFragment();
-  const renderedComments = comments.slice(currentCount, currentCount + COUNT_STEP);
-  const renderedCommentsLength = currentCount + renderedComments.length;
+  const renderedComments = comments.slice(startCount, currentCount + COUNT_STEP);
+  const renderedCommentsLength = renderedComments.length;
   const commentsShownCount = commentsCount.querySelector('.social__comment-shown-count');
 
   renderedComments.forEach((comment) => {
@@ -26,6 +27,7 @@ const renderNextComments = () => {
   });
 
   socialComments.appendChild(socialCommentsFragment);
+
   commentsShownCount.textContent = `${renderedCommentsLength}`;
   commentsCount.querySelector('.social__comment-total-count').textContent = comments.length;
 
