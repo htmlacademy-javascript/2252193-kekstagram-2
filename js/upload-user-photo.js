@@ -32,8 +32,8 @@ fileUpload.addEventListener('change', () => {
     });
   } else {
     shownToastError('Неверный тип файла');
-    return;
+    // return;
   }
 
-  closePhotoEditor();
+  // closePhotoEditor();
 });
