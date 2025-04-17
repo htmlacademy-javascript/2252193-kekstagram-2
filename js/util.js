@@ -1,14 +1,8 @@
-// функция для рандомного числа из диапазона.
-import { ALERT_SHOW_TIME } from './data.js';
-
-const templateError = document.querySelector('#data-error').content.querySelector('.data-error');
-
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.floor(Math.random() * (upper - lower + 1) + lower);
-  // Исключаем повторение значения в след вызовах для коментариев
-  return result === upper ? lower : result + 1; // подставляем следующий
+  return result === upper ? lower : result + 1;
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -45,14 +39,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-const shownToastError = (errorMessage) => {
-  const errorElement = templateError.cloneNode(true);
-  document.body.appendChild(errorElement);
-  if (errorMessage) {
-    errorElement.querySelector('.data-error__title').textContent = errorMessage;
-  }
-  setTimeout(() => (errorElement.remove()), ALERT_SHOW_TIME);
-};
-
-
-export { getRandomInteger, isEscapeKey, numPlural, getTemplateElement, randomIntegersBetweenRange, debounce, shownToastError };
+export { getRandomInteger, isEscapeKey, numPlural, getTemplateElement, randomIntegersBetweenRange, debounce };
