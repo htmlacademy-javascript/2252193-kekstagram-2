@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { resetScale } from './scale-buttons.js';
-import { onChangeImageEffect } from './photo-effects.js';
+import {effectsListener, imageEffectReset, onChangeImageEffect, uiSlider} from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -8,6 +8,7 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadModal = uploadForm.querySelector('.img-upload__overlay');
 const uploadResetButton = uploadForm.querySelector('#upload-cancel');
 const imgEffectsFieldset = document.querySelector('.img-upload__effects');
+const effectSliderContainer = document.querySelector('.img-upload__effect-level');
 const effectLevelSlider = uploadForm.querySelector('.effect-level__slider');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
@@ -33,8 +34,7 @@ function closePhotoEditor(){
   document.removeEventListener('keydown', onDocumentKeydown);
   uploadResetButton.removeEventListener('click', onResetButtonClick);
   imgEffectsFieldset.removeEventListener('change', onChangeImageEffect);
-  effectLevelSlider.noUiSlider.destroy();
-  // imageEffectReset(); // добилась сброса контейнера и эффектов картинки, но при повторном открытие они перестали появляться
+  imageEffectReset();
   uploadFile.value = '';
   uploadForm.reset();
 }
@@ -43,7 +43,7 @@ const initUploadModal = () => {
   uploadFile.addEventListener('change', () => {
     uploadModal.classList.remove('hidden');
     pageBody.classList.add('modal-open');
-
+    effectsListener();
     uploadResetButton.addEventListener('click', onResetButtonClick);
     document.addEventListener('keydown', onDocumentKeydown);
   });

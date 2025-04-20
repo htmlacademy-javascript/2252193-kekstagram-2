@@ -1,14 +1,14 @@
 import { NO_EFFECT, EFFECT_CONFIG } from './const-effects.js';
 
 const uploadForm = document.querySelector('#upload-select-image');
-const imgUploadSection = document.querySelector('.img-upload__overlay');
-const imgEffectsFieldset = document.querySelector('.img-upload__effects');
-const effectSliderContainer = document.querySelector('.img-upload__effect-level');
+const imgUploadSection = uploadForm.querySelector('.img-upload__overlay');
+const imgEffectsFieldset = uploadForm.querySelector('.img-upload__effects');
+const effectSliderContainer = uploadForm.querySelector('.img-upload__effect-level');
 const effectLevelSlider = imgUploadSection.querySelector('.effect-level__slider');
 const effectInputValue = imgUploadSection.querySelector('.effect-level__value');
 const imgUploadPreview = imgUploadSection.querySelector('.img-upload__preview img');
 
-const uiSlider = noUiSlider.create(effectLevelSlider, {
+export const uiSlider = noUiSlider.create(effectLevelSlider, {
   range: {min: 0, max: 100,},
   start: 100,
   step: 1,
@@ -32,27 +32,26 @@ const imageEffectReset = () => {
 
 const onChangeImageEffect = (evt) => {
   const effectName = evt.target.value;
-  imgUploadPreview.className = '';
-  imgUploadPreview.classList.add(`effects__preview--${effectName}`);
-  if (effectName === NO_EFFECT) {
-    imageEffectReset();
-  } else {
-    effectSliderContainer.classList.remove('hidden');
+  imgUploadPreview.className = `effects__preview--${effectName}`;
+  effectSliderContainer.classList.toggle('hidden', effectName === NO_EFFECT);
+  if (effectName !== NO_EFFECT) {
     updateSliderConfig(EFFECT_CONFIG[effectName]);
+  } else {
+    imageEffectReset();
   }
 };
 
 const onEffectValueChange = (handlersValue) => {
   const value = handlersValue[0];
   const effectName = uploadForm.effect.value;
-  if (effectName === NO_EFFECT) {
-    effectSliderContainer.classList.add('hidden');
-    return;
+
+  effectSliderContainer.classList.toggle('hidden', effectName === NO_EFFECT);
+
+  if (effectName !== NO_EFFECT) {
+    const { style: filterName, unit: filterUnits } = EFFECT_CONFIG[effectName];
+    imgUploadPreview.style.filter = `${filterName}(${value}${filterUnits})`;
+    effectInputValue.value = value;
   }
-  const filterName = EFFECT_CONFIG[effectName].style;
-  const filterUnits = EFFECT_CONFIG[effectName].unit;
-  imgUploadPreview.style.filter = `${filterName}(${value}${filterUnits})`;
-  effectInputValue.value = value;
 };
 
 const effectsListener = () =>{
