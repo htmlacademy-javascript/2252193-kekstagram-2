@@ -90,7 +90,6 @@ const onFormSubmit = (evt) => {
   };
 
   const onError = () => {
-    closePhotoEditor();
     unBlockSubmitButton();
     openUploadMessagePopup('error');
   };
