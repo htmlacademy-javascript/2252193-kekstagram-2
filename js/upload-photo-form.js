@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { resetScale } from './scale-buttons.js';
-import {effectsListener, imageEffectReset, onChangeImageEffect, uiSlider} from './photo-effects.js';
+import { effectsListener, imageEffectReset, onChangeImageEffect } from './photo-effects.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -8,8 +8,6 @@ const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadModal = uploadForm.querySelector('.img-upload__overlay');
 const uploadResetButton = uploadForm.querySelector('#upload-cancel');
 const imgEffectsFieldset = document.querySelector('.img-upload__effects');
-const effectSliderContainer = document.querySelector('.img-upload__effect-level');
-const effectLevelSlider = uploadForm.querySelector('.effect-level__slider');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 

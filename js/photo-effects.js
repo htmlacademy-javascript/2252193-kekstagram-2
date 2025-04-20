@@ -8,7 +8,7 @@ const effectLevelSlider = imgUploadSection.querySelector('.effect-level__slider'
 const effectInputValue = imgUploadSection.querySelector('.effect-level__value');
 const imgUploadPreview = imgUploadSection.querySelector('.img-upload__preview img');
 
-export const uiSlider = noUiSlider.create(effectLevelSlider, {
+const uiSlider = noUiSlider.create(effectLevelSlider, {
   range: {min: 0, max: 100,},
   start: 100,
   step: 1,

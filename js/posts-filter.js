@@ -60,7 +60,7 @@ const btnFilterChange = (evt) => {
   switch (filter) {
     case 'filter-discussed':
       changeFilterClassName(filter);
-      break
+      break;
     case 'filter-random':
       changeFilterClassName(filter);
       break;
@@ -81,7 +81,7 @@ const postFilterChange = debounce((evt, userPosts) => {
   switch (filter) {
     case 'filter-discussed':
       renderThumbs(filterPostsDiscuss(userPosts));
-      break
+      break;
     case 'filter-random':
       renderThumbs(filterPostsRandom(userPosts, POST_MAX_COUNT));
       break;

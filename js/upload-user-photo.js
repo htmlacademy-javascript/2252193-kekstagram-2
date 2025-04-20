@@ -1,5 +1,4 @@
-import { closePhotoEditor } from './upload-photo-form.js';
-import {ALERT_SHOW_TIME} from './data.js';
+import { ALERT_SHOW_TIME } from './data.js';
 
 const FILE_TYPES = ['jpg','jpeg','png','gif'];
 
