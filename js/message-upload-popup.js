@@ -4,6 +4,7 @@ import { ALERT_SHOW_TIME } from './data.js';
 const pageBody = document.body;
 const errorUploadTemplate = getTemplateElement(pageBody, 'error', 'error');
 const successUploadTemplate = getTemplateElement(pageBody, 'success', 'success');
+const templateError = document.querySelector('#data-error').content.querySelector('.data-error');
 
 const openUploadMessagePopup = (popupType) => {
 
@@ -57,18 +58,14 @@ const openUploadMessagePopup = (popupType) => {
   pageBody.appendChild(innerPopup);
 };
 
-
-const showAlertMessage = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.classList.add('alert-message');
-
-  alertContainer.textContent = message;
-
-  document.body.append(alertContainer);
-
-  setTimeout(() => {
-    alertContainer.remove();
-  }, ALERT_SHOW_TIME);
+const shownToastError = (errorMessage) => {
+  const errorElement = templateError.cloneNode(true);
+  document.body.appendChild(errorElement);
+  if (errorMessage) {
+    errorElement.querySelector('.data-error__title').textContent = errorMessage;
+  }
+  setTimeout(() => (errorElement.remove()), ALERT_SHOW_TIME);
 };
 
-export { openUploadMessagePopup, showAlertMessage };
+export { openUploadMessagePopup, shownToastError };
+

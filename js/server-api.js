@@ -1,4 +1,4 @@
-import { showAlertMessage } from './message-upload-popup.js';
+import { shownToastError } from './message-upload-popup.js';
 import { API_URL } from './endpoints.js';
 
 const getDataFromServer = async (onSuccess) => {
@@ -10,7 +10,7 @@ const getDataFromServer = async (onSuccess) => {
     const posts = await response.json();
     onSuccess(posts);
   } catch (error) {
-    showAlertMessage('Не удалось загрузить данные с сервера');
+    shownToastError('Не удалось загрузить данные с сервера');
   }
 };
 
@@ -29,7 +29,7 @@ const sendDataToServer = (formData, onSuccess, onError) => {
       }
       onError();
     })
-    .catch(() => onError());
+    .catch(() => onError);
 };
 
 export { getDataFromServer, sendDataToServer };
