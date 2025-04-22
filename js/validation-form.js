@@ -81,6 +81,11 @@ const isHashtagsValid = (value) => {
 const onFormSubmit = (evt) => {
   evt.preventDefault();
 
+  const isValid = pristine.validate();
+  if (!isValid) {
+    return;
+  }
+
   const formData = new FormData(evt.target);
   blockSubmitButton();
 
