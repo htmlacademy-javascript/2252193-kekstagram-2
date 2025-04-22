@@ -15,20 +15,20 @@ const getDataFromServer = async (onSuccess) => {
 };
 
 const sendDataToServer = async (formData, onSuccess, onError) => {
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        body: formData,
-      });
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      body: formData,
+    });
 
-      if (response.ok) {
-        onSuccess();
-      } else {
-        onError();
-      }
-    } catch (err) {
-      onError;
+    if (response.ok) {
+      onSuccess();
+    } else {
+      onError();
     }
+  } catch (err) {
+    onError();
+  }
 };
 
 export { getDataFromServer, sendDataToServer };

@@ -73,8 +73,11 @@ const isHashtagsValid = (value) => {
     const isInvalid = rule.check;
     if (isInvalid) {
       errorMsg = rule.error;
+      uploadSubmitButton.disabled = true;
+    }else {
+      uploadSubmitButton.disabled = false;
+      return !isInvalid;
     }
-    return !isInvalid;
   });
 };
 
