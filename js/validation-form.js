@@ -38,7 +38,7 @@ const isHashtagsValid = (value) => {
     return true;
   }
 
-  const rules = [
+  const Rules = [
     {
       check: hashtagArray.some((item) => item[0] !== '#'),
       error: errorText.startsWithHash,
@@ -69,7 +69,7 @@ const isHashtagsValid = (value) => {
     },
   ];
 
-  return rules.every((rule) => {
+  return Rules.every((rule) => {
     const isInvalid = rule.check;
     if (isInvalid) {
       errorMsg = rule.error;

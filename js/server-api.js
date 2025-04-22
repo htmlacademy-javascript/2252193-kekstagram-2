@@ -9,7 +9,7 @@ const getDataFromServer = async (onSuccess) => {
     }
     const posts = await response.json();
     onSuccess(posts);
-  } catch (error) {
+  } catch (err) {
     shownToastError('Не удалось загрузить данные с сервера');
   }
 };
@@ -26,7 +26,7 @@ const sendDataToServer = async (formData, onSuccess, onError) => {
       } else {
         onError();
       }
-    } catch (error) {
+    } catch (err) {
       onError;
     }
 };

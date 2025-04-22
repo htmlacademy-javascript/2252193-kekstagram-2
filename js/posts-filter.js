@@ -28,7 +28,7 @@ const enableFilterPosts = () => {
 
 const filterPostsDefault = (userPosts) => userPosts;
 
-const filterPostsDiscuss = (userPosts) => userPosts.slice().sort((commentA, commentB) => commentB.comments.length - commentA.comments.length);
+const filterPostsDiscussed = (userPosts) => userPosts.slice().sort((commentA, commentB) => commentB.comments.length - commentA.comments.length);
 
 const filterPostsRandom = (posts, maxCount) => {
   const startIndex = 0;
@@ -80,7 +80,7 @@ const postFilterChange = debounce((evt, userPosts) => {
 
   switch (filter) {
     case 'filter-discussed':
-      renderThumbs(filterPostsDiscuss(userPosts));
+      renderThumbs(filterPostsDiscussed(userPosts));
       break;
     case 'filter-random':
       renderThumbs(filterPostsRandom(userPosts, POST_MAX_COUNT));
