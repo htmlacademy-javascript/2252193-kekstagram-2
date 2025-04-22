@@ -1,4 +1,4 @@
-import { MAX_SYMBOLS, MAX_HASHTAGS } from './data.js';
+import { MAX_SYMBOLS, MAX_HASHTAGS, COMMENT_MAX_LENGTH } from './data.js';
 import { errorText, submitBtnText } from './const-errors.js';
 import { openUploadMessagePopup } from './message-upload-popup.js';
 import { sendDataToServer } from './server-api.js';
@@ -81,6 +81,17 @@ const isHashtagsValid = (value) => {
   });
 };
 
+const isCommentValid = (value) => {
+  const textComment = value.length <= 140;
+  if (!textComment) {
+    uploadSubmitButton.disabled = true;
+    errorMsg = `Длина комментария не может составлять больше ${COMMENT_MAX_LENGTH} символов`;
+  } else {
+    uploadSubmitButton.disabled = false;
+    return textComment;
+  }
+};
+
 const onFormSubmit = (evt) => {
   evt.preventDefault();
 
@@ -108,7 +119,7 @@ const onFormSubmit = (evt) => {
 
 const formValidate = () => {
   pristine.addValidator(hashtagInput, isHashtagsValid, error);
-  pristine.addValidator(textInput, (value) => value.length <= 140, 'Слишком длинный комментарий');
+  pristine.addValidator(textInput, isCommentValid, error);
   uploadForm.addEventListener('submit', onFormSubmit);
 };
 
