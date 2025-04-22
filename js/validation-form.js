@@ -8,6 +8,8 @@ const uploadForm = document.querySelector('.img-upload__form');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
+const REGULAR_EXPRESSION = /^#[a-zа-яё0-9]{1,19}$/i;
+const hashtagValidateRegExp = new RegExp(REGULAR_EXPRESSION);
 
 let errorMsg = '';
 
@@ -33,7 +35,8 @@ const isHashtagsValid = (value) => {
   errorMsg = '';
   const hashtagArray = value.toLowerCase().trim().split(/\s+/);
 
-  if (!hashtagArray) {
+  if (value === '') {
+    pristine.reset();
     return true;
   }
 
@@ -51,7 +54,7 @@ const isHashtagsValid = (value) => {
       error: errorText.maxLengthSymbols,
     },
     {
-      check: hashtagArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      check: hashtagArray.some((item) => !hashtagValidateRegExp.test(item)),
       error: errorText.invalidSymbols,
     },
     {

@@ -11,9 +11,9 @@ getDataFromServer((posts) => {
   renderThumbs(posts);
   initThumbsListener(posts);
   initPostsFilter(posts);
-  sendDataToServer();
 });
 
+sendDataToServer;
 effectsListener();
 formValidate();
 initUploadModal();
