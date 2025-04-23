@@ -5,10 +5,6 @@ const pageBody = document.body;
 const errorUploadTemplate = getTemplateElement(pageBody, 'error', 'error');
 const successUploadTemplate = getTemplateElement(pageBody, 'success', 'success');
 const templateError = document.querySelector('#data-error').content.querySelector('.data-error');
-const successInner = successUploadTemplate.querySelector('.success__inner');
-const errorInner = document.querySelector('.error__inner');
-const successButton = document.querySelector('.success__button');
-const errorButton = document.querySelector('.error__button');
 
 const openUploadMessagePopup = (popupType) => {
 
@@ -19,13 +15,13 @@ const openUploadMessagePopup = (popupType) => {
   switch (popupType) {
     case 'success':
       popupTemplate = successUploadTemplate;
-      popupInnerSection = successInner;
-      popupButtonElementClass = successButton;
+      popupInnerSection = '.success__inner';
+      popupButtonElementClass = '.success__button';
       break;
     case 'error':
       popupTemplate = errorUploadTemplate;
-      popupInnerSection = errorInner;
-      popupButtonElementClass = errorButton;
+      popupInnerSection = '.error__inner';
+      popupButtonElementClass = '.error__button';
       break;
   }
 
