@@ -35,6 +35,7 @@ const isHashtagsValid = (value) => {
 
   if (value === '') {
     pristine.reset();
+    uploadSubmitButton.disabled = false;
     return true;
   }
 
