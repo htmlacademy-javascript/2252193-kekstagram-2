@@ -6,60 +6,36 @@ const errorUploadTemplate = getTemplateElement(pageBody, 'error', 'error');
 const successUploadTemplate = getTemplateElement(pageBody, 'success', 'success');
 const templateError = document.querySelector('#data-error').content.querySelector('.data-error');
 
-const openUploadMessagePopup = (popupType) => {
+const templates = {
+  success: successUploadTemplate,
+  error: errorUploadTemplate
+};
 
-  let popupTemplate;
-  let popupInnerSection;
-  let popupButtonElementClass;
-  const successInner = '.success__inner';
-  const errorInner = '.error__inner';
-  const successButton = 'success__button';
-  const errorButton = 'error__button';
+const PopupTypes = {
+  SUCCESS: 'success',
+  ERROR: 'error'
+};
 
-  switch (popupType) {
-    case 'success':
-      popupTemplate = successUploadTemplate;
-      popupInnerSection = successInner;
-      popupButtonElementClass = successButton;
-      break;
-    case 'error':
-      popupTemplate = errorUploadTemplate;
-      popupInnerSection = errorInner;
-      popupButtonElementClass = errorButton;
-      break;
-  }
+const showPopup = (type) => {
+  const newPopup = templates[type].cloneNode(true);
 
-  const innerPopup = popupTemplate.cloneNode(true);
-  const innerPopupSection = innerPopup.querySelector(popupInnerSection);
-  const popupButton = innerPopup.querySelector(popupButtonElementClass);
-
-  const onUploadMessagePopupEsc = (evt) => {
+  const onDocumentKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
-      closeUploadMessagePopup();
+      newPopup.remove();
     }
   };
 
-  const onOutsideClick = (evt) => {
-    const isOutsideClick = !evt.composedPath().includes(innerPopupSection);
-    if (isOutsideClick) {
-      closeUploadMessagePopup();
+  newPopup.addEventListener('click', ({target}) => {
+    if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
+      newPopup.remove();
+      document.removeEventListener('keydown', onDocumentKeydown, {once: true});
     }
-  };
+  });
 
-  function closeUploadMessagePopup() {
-    popupButton.removeEventListener('click', closeUploadMessagePopup);
-    document.removeEventListener('keydown', onUploadMessagePopupEsc);
-    document.removeEventListener('click', onOutsideClick);
-    innerPopup.remove();
-  }
+  document.addEventListener('keydown', onDocumentKeydown, {once: true});
 
-  document.addEventListener('keydown', onUploadMessagePopupEsc);
-  document.addEventListener('click', onOutsideClick);
-
-  popupButton.addEventListener('click', closeUploadMessagePopup);
-
-  pageBody.appendChild(innerPopup);
+  pageBody.append(newPopup);
 };
 
 const shownToastError = (errorMessage) => {
@@ -71,5 +47,5 @@ const shownToastError = (errorMessage) => {
   setTimeout(() => (errorElement.remove()), ALERT_SHOW_TIME);
 };
 
-export { openUploadMessagePopup, shownToastError };
+export { shownToastError, showPopup, PopupTypes };
 

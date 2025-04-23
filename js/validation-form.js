@@ -1,6 +1,6 @@
 import { MAX_SYMBOLS, MAX_HASHTAGS, COMMENT_MAX_LENGTH } from './data.js';
 import { errorText, submitBtnText } from './const-errors.js';
-import { openUploadMessagePopup } from './message-upload-popup.js';
+import { showPopup, PopupTypes } from './message-upload-popup.js';
 import { sendDataToServer } from './server-api.js';
 import { closePhotoEditor } from './upload-photo-form.js';
 
@@ -107,12 +107,12 @@ const onFormSubmit = (evt) => {
   const onSuccess = () => {
     closePhotoEditor();
     unBlockSubmitButton();
-    openUploadMessagePopup('success');
+    showPopup(PopupTypes.SUCCESS);
   };
 
   const onError = () => {
     unBlockSubmitButton();
-    openUploadMessagePopup('error');
+    showPopup(PopupTypes.ERROR);
   };
 
   sendDataToServer(formData, onSuccess, onError);

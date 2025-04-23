@@ -13,7 +13,7 @@ getDataFromServer((posts) => {
   initPostsFilter(posts);
 });
 
-sendDataToServer();
+sendDataToServer;
 effectsListener();
 formValidate();
 initUploadModal();
