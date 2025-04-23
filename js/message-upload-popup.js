@@ -11,17 +11,21 @@ const openUploadMessagePopup = (popupType) => {
   let popupTemplate;
   let popupInnerSection;
   let popupButtonElementClass;
+  const successInner = '.success__inner';
+  const errorInner = '.error__inner';
+  const successButton = 'success__button';
+  const errorButton = 'error__button';
 
   switch (popupType) {
     case 'success':
       popupTemplate = successUploadTemplate;
-      popupInnerSection = '.success__inner';
-      popupButtonElementClass = '.success__button';
+      popupInnerSection = successInner;
+      popupButtonElementClass = successButton;
       break;
     case 'error':
       popupTemplate = errorUploadTemplate;
-      popupInnerSection = '.error__inner';
-      popupButtonElementClass = '.error__button';
+      popupInnerSection = errorInner;
+      popupButtonElementClass = errorButton;
       break;
   }
 
