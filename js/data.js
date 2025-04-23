@@ -1,6 +1,6 @@
 const MAX_HASHTAGS = 5;
 const MAX_SYMBOLS = 20;
-const COMMENT_MAX_LENGTH = 140
+const COMMENT_MAX_LENGTH = 140;
 
 const SCALE_STEP = 0.25;
 
