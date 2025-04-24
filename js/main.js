@@ -3,7 +3,7 @@ import { initUploadModal } from './upload-photo-form.js';
 import { formValidate } from './validation-form.js';
 import './scale-buttons.js';
 import { effectsListener } from './photo-effects.js';
-import { getDataFromServer, sendDataToServer } from './server-api.js';
+import { getDataFromServer } from './server-api.js';
 import { disableFilterPosts, initPostsFilter } from './posts-filter.js';
 import './upload-user-photo.js';
 
@@ -13,7 +13,6 @@ getDataFromServer((posts) => {
   initPostsFilter(posts);
 });
 
-sendDataToServer();
 effectsListener();
 formValidate();
 initUploadModal();
