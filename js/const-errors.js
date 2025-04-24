@@ -1,5 +1,5 @@
 import { MAX_HASHTAGS, MAX_SYMBOLS } from './data.js';
-import { numPlural } from './util.js';
+import { getPluralNum } from './util.js';
 
 const errorText = {
   startsWithHash: 'Хэштег начинается с символа # (решётка)',
@@ -8,7 +8,7 @@ const errorText = {
   invalidSymbols: 'Хэштег содержит недопустимые символы',
   notSeparated: 'Хэштеги разделяются пробелами',
   notRepeated: 'Хэштеги не должны повторяться',
-  maxLengthHashtags: `Нельзя указать больше ${MAX_HASHTAGS} ${numPlural(
+  maxLengthHashtags: `Нельзя указать больше ${MAX_HASHTAGS} ${getPluralNum(
     MAX_HASHTAGS, 'хештега', 'хештегов', 'хештегов'
   )}`,
 };

@@ -1,34 +1,38 @@
 import { shownToastError } from './message-upload-popup.js';
 import URLS from './endpoints.js';
 
-const getDataFromServer = async (onSuccess) => {
-  try {
-    const response = await fetch(URLS.DATA_URL);
-    if (!response.ok) {
+const getDataFromServer = (onSuccess) => {
+  fetch(URLS.DATA_URL)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
       throw new Error(`${response.status} ${response.statusText}`);
-    }
-    const posts = await response.json();
-    onSuccess(posts);
-  } catch (err) {
-    shownToastError('Не удалось загрузить данные с сервера');
-  }
+    })
+    .then((posts) => {
+      onSuccess(posts);
+    })
+    .catch(() => {
+      shownToastError('Не удалось загрузить данные с сервера');
+    });
 };
 
-const sendDataToServer = async (formData, onSuccess, onError) => {
-  try {
-    const response = await fetch(URLS.API_URL, {
+const sendDataToServer = (formData, onSuccess, onError) => {
+  fetch(
+    URLS.API_URL,
+    {
       method: 'POST',
       body: formData,
-    });
-
-    if (response.ok) {
-      onSuccess();
-    } else {
-      onError();
     }
-  } catch (err) {
-    onError();
-  }
+  )
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+        return;
+      }
+      onError();
+    })
+    .catch(() => onError());
 };
 
 export { getDataFromServer, sendDataToServer };

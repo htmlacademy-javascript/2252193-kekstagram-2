@@ -27,11 +27,11 @@ const unBlockSubmitButton = () => {
   uploadSubmitButton.textContent = submitBtnText.default;
 };
 
-const error = () => errorMsg;
+const issueError = () => errorMsg;
 
 const isHashtagsValid = (value) => {
   errorMsg = '';
-  const hashtagArray = value.toLowerCase().trim().split(/\s+/);
+  const hashtagsArray = value.toLowerCase().trim().split(/\s+/);
 
   if (value === '') {
     pristine.reset();
@@ -41,31 +41,31 @@ const isHashtagsValid = (value) => {
 
   const Rules = [
     {
-      check: hashtagArray.some((item) => item[0] !== '#'),
+      check: hashtagsArray.some((item) => item[0] !== '#'),
       error: errorText.startsWithHash,
     },
     {
-      check: hashtagArray.some((item) => item === '#'),
+      check: hashtagsArray.some((item) => item === '#'),
       error: errorText.notOnlyHash,
     },
     {
-      check: hashtagArray.some((item) => item.length > MAX_SYMBOLS),
+      check: hashtagsArray.some((item) => item.length > MAX_SYMBOLS),
       error: errorText.maxLengthSymbols,
     },
     {
-      check: hashtagArray.some((item) => item.slice(1).includes('#')),
+      check: hashtagsArray.some((item) => item.slice(1).includes('#')),
       error: errorText.notSeparated,
     },
     {
-      check: hashtagArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      check: hashtagsArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
       error: errorText.invalidSymbols,
     },
     {
-      check: hashtagArray.some((item, num, array) => array.includes(item, num + 1)),
+      check: hashtagsArray.some((item, num, array) => array.includes(item, num + 1)),
       error: errorText.notRepeated,
     },
     {
-      check: hashtagArray.length > MAX_HASHTAGS,
+      check: hashtagsArray.length > MAX_HASHTAGS,
       error: errorText.maxLengthHashtags,
     },
   ];
@@ -119,8 +119,8 @@ const onFormSubmit = (evt) => {
 };
 
 const formValidate = () => {
-  pristine.addValidator(hashtagInput, isHashtagsValid, error);
-  pristine.addValidator(textInput, isCommentValid, error);
+  pristine.addValidator(hashtagInput, isHashtagsValid, issueError);
+  pristine.addValidator(textInput, isCommentValid, issueError);
   uploadForm.addEventListener('submit', onFormSubmit);
 };
 

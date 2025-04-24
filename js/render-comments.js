@@ -8,7 +8,7 @@ const socialComment = socialComments.querySelector('.social__comment');
 const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 
-const renderNextComments = () => {
+const onCommentsBtnLoad = () => {
   const startCount = 0;
   const socialCommentsFragment = document.createDocumentFragment();
   const renderedComments = comments.slice(startCount, currentCount + COUNT_STEP);
@@ -41,14 +41,14 @@ const clearComments = () => {
   currentCount = 0;
   socialComments.innerHTML = '';
   commentsLoader.classList.remove('hidden');
-  commentsLoader.removeEventListener('click', renderNextComments);
+  commentsLoader.removeEventListener('click', onCommentsBtnLoad);
 };
 
 const renderComments = (currentPhotoComments) => {
   comments = currentPhotoComments;
-  renderNextComments();
+  onCommentsBtnLoad();
 
-  commentsLoader.addEventListener('click', renderNextComments);
+  commentsLoader.addEventListener('click', onCommentsBtnLoad);
 };
 
 export { clearComments, renderComments };

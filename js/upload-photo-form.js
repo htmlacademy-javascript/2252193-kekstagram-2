@@ -16,7 +16,7 @@ const onResetButtonClick = () => closePhotoEditor();
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    if (document.activeElement === hashtagInput || document.activeElement === textInput) {
+    if (document.activeElement === hashtagInput || document.activeElement === textInput || document.contains('.error')) {
       evt.stopPropagation();
     } else {
       uploadForm.reset();
