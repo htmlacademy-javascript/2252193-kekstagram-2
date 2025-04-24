@@ -1,5 +1,5 @@
 import { renderThumbs } from './thumbnail-maker.js';
-import { debounce, randomIntegersBetweenRange } from './util.js';
+import { debounce, getRandomIntegersBetweenRange } from './util.js';
 
 const POST_MAX_COUNT = 10;
 const RERENDER_DELAY = 500;
@@ -7,7 +7,7 @@ const RERENDER_DELAY = 500;
 const postsContainer = document.querySelector('.pictures');
 const imgFiltersSection = document.querySelector('.img-filters');
 const imgFiltersForm = imgFiltersSection.querySelector('.img-filters__form');
-const filterButton = imgFiltersSection.querySelectorAll('.img-filters__button');
+const filterButtons = imgFiltersSection.querySelectorAll('.img-filters__button');
 
 const showFilterPosts = () => {
   imgFiltersSection.classList.remove('img-filters--inactive');
@@ -15,13 +15,13 @@ const showFilterPosts = () => {
 };
 
 const disableFilterPosts = () => {
-  filterButton.forEach((button) => {
+  filterButtons.forEach((button) => {
     button.disabled = true;
   });
 };
 
 const enableFilterPosts = () => {
-  filterButton.forEach((button) => {
+  filterButtons.forEach((button) => {
     button.disabled = false;
   });
 };
@@ -34,7 +34,7 @@ const filterPostsRandom = (posts, maxCount) => {
   const startIndex = 0;
   const lastIndex = posts.length - 1;
   const elementsCount = Math.min(posts.length, maxCount);
-  const randomPostsIndexes = randomIntegersBetweenRange(startIndex, lastIndex, elementsCount);
+  const randomPostsIndexes = getRandomIntegersBetweenRange(startIndex, lastIndex, elementsCount);
   return randomPostsIndexes.map((index) => posts[index]);
 };
 
@@ -51,7 +51,7 @@ const clearOldPosts = () => {
   });
 };
 
-const btnFilterChange = (evt) => {
+const onBtnFilterClick = (evt) => {
   if (!evt.target.classList.contains('img-filters__button')) {
     return;
   }
@@ -93,7 +93,7 @@ const postFilterChange = debounce((evt, userPosts) => {
 
 const initPostsFilter = (userPosts) => {
   imgFiltersForm.addEventListener('click', (evt) => postFilterChange(evt, userPosts));
-  imgFiltersForm.addEventListener('click', btnFilterChange);
+  imgFiltersForm.addEventListener('click', onBtnFilterClick);
   showFilterPosts();
   enableFilterPosts();
 };
