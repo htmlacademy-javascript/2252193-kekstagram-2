@@ -48,4 +48,3 @@ const shownToastError = (errorMessage) => {
 };
 
 export { shownToastError, showPopup, PopupTypes };
-
