@@ -11,7 +11,7 @@ const getPluralNum = (num, nominative, genitiveSingular, genitivePlural) => {
 
 const getTemplateElement = (parent, templateId, elementClass) => parent.querySelector(`#${templateId}`).content.querySelector(`.${elementClass}`);
 
-const shufflesArray = (array) => [...array].sort(() => Math.random() - 0.5);
+const getRandomNumber = (array) => [...array].sort(() => Math.random() - 0.5);
 
 const getRandomIntegersBetweenRange = (from, to, resultsLimit) => {
   const range = Math.abs(from - to);
@@ -21,7 +21,7 @@ const getRandomIntegersBetweenRange = (from, to, resultsLimit) => {
   const resultsCount = Math.min(range, resultsLimit);
   const minValue = Math.min(from, to);
   const values = Array.from({ length: range }, (_, index) => minValue + index);
-  return shufflesArray(values).splice(0, resultsCount);
+  return getRandomNumber(values).splice(0, resultsCount);
 };
 
 const debounce = (callback, timeoutDelay) => {

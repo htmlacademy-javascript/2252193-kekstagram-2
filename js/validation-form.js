@@ -31,7 +31,7 @@ const issueError = () => errorMsg;
 
 const isHashtagsValid = (value) => {
   errorMsg = '';
-  const hashtagsArray = value.toLowerCase().trim().split(/\s+/);
+  const normalizedInputHashtags = value.toLowerCase().trim().split(/\s+/);
 
   if (value === '') {
     pristine.reset();
@@ -41,31 +41,31 @@ const isHashtagsValid = (value) => {
 
   const Rules = [
     {
-      check: hashtagsArray.some((item) => item[0] !== '#'),
+      check: normalizedInputHashtags.some((item) => item[0] !== '#'),
       error: errorText.startsWithHash,
     },
     {
-      check: hashtagsArray.some((item) => item === '#'),
+      check: normalizedInputHashtags.some((item) => item === '#'),
       error: errorText.notOnlyHash,
     },
     {
-      check: hashtagsArray.some((item) => item.length > MAX_SYMBOLS),
+      check: normalizedInputHashtags.some((item) => item.length > MAX_SYMBOLS),
       error: errorText.maxLengthSymbols,
     },
     {
-      check: hashtagsArray.some((item) => item.slice(1).includes('#')),
+      check: normalizedInputHashtags.some((item) => item.slice(1).includes('#')),
       error: errorText.notSeparated,
     },
     {
-      check: hashtagsArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      check: normalizedInputHashtags.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
       error: errorText.invalidSymbols,
     },
     {
-      check: hashtagsArray.some((item, num, array) => array.includes(item, num + 1)),
+      check: normalizedInputHashtags.some((item, num, array) => array.includes(item, num + 1)),
       error: errorText.notRepeated,
     },
     {
-      check: hashtagsArray.length > MAX_HASHTAGS,
+      check: normalizedInputHashtags.length > MAX_HASHTAGS,
       error: errorText.maxLengthHashtags,
     },
   ];
