@@ -11,7 +11,7 @@ const getPluralNum = (num, nominative, genitiveSingular, genitivePlural) => {
 
 const getTemplateElement = (parent, templateId, elementClass) => parent.querySelector(`#${templateId}`).content.querySelector(`.${elementClass}`);
 
-const getRandomNumber = (array) => [...array].sort(() => Math.random() - 0.5);
+const getRandomNumber = (numbers) => [...numbers].sort(() => Math.random() - 0.5);
 
 const getRandomIntegersBetweenRange = (from, to, resultsLimit) => {
   const range = Math.abs(from - to);
