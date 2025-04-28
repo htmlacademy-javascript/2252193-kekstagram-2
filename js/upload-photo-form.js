@@ -10,13 +10,14 @@ const uploadResetButton = uploadForm.querySelector('#upload-cancel');
 const imgEffectsFieldset = document.querySelector('.img-upload__effects');
 const textInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
+const errorPopup = document.querySelector('#error');
 
 const onResetButtonClick = () => closePhotoEditor();
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    if (document.activeElement === hashtagInput || document.activeElement === textInput || document.contains('.error')) {
+    if (document.activeElement === hashtagInput || document.activeElement === textInput || document.contains(errorPopup)) {
       evt.stopPropagation();
     } else {
       uploadForm.reset();
