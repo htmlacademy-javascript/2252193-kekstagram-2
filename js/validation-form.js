@@ -74,7 +74,7 @@ const isHashtagsValid = (value) => {
     const isInvalid = rule.check;
     if (isInvalid) {
       errorMsg = rule.error;
-      uploadSubmitButton.disabled = true;
+      // uploadSubmitButton.disabled = true;
     }else {
       uploadSubmitButton.disabled = false;
       return !isInvalid;
@@ -85,7 +85,7 @@ const isHashtagsValid = (value) => {
 const isCommentValid = (value) => {
   const textComment = value.length <= 140;
   if (!textComment) {
-    uploadSubmitButton.disabled = true;
+    // uploadSubmitButton.disabled = true;
     errorMsg = `Длина комментария не может составлять больше ${COMMENT_MAX_LENGTH} символов`;
   } else {
     uploadSubmitButton.disabled = false;
@@ -96,10 +96,10 @@ const isCommentValid = (value) => {
 const onFormSubmit = (evt) => {
   evt.preventDefault();
 
-  const isValid = pristine.validate();
-  if (!isValid) {
-    return;
-  }
+  // const isValid = pristine.validate();
+  // if (!isValid) {
+  //   return;
+  // }
 
   const formData = new FormData(evt.target);
   blockSubmitButton();
