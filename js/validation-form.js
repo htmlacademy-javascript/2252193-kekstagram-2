@@ -61,7 +61,7 @@ const isHashtagsValid = (value) => {
       error: errorText.invalidSymbols,
     },
     {
-      check: normalizedInputHashtags.some((item, num, hashtags) => hashtags.includes(item, num + 1)),
+      check: normalizedInputHashtags.some((item, num, hashtagsList) => hashtagsList.includes(item, num + 1)),
       error: errorText.notRepeated,
     },
     {
